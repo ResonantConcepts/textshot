@@ -1,3 +1,1 @@
-# Textshot
-
 Read. Capture. Tweet.
