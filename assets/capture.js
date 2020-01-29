@@ -60,7 +60,7 @@ function getContrastYIQ(hexcolor) {
   
     let button = document.createElement("a");
       let buttonParams = new URLSearchParams();
-        buttonParams.append("text", "tweet+text");
+        buttonParams.append("text", "%E2%80%9C" + urlParams.get("title") + "%E2%80%9D from ");
         buttonParams.append("url", urlParams.get("url"));
         if (urlParams.has("via")) {
           buttonParams.append("via", urlParams.get("via"));
