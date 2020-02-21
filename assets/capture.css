@@ -30,7 +30,6 @@ body {
   text-align: left;
   word-wrap: break-word;
   background: var(--highlightBackground, #FF3374);
-  background-color: hsl(0, 0%, 100%);
   font-size: 1.25rem;
 }
 
