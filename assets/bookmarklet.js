@@ -18,7 +18,7 @@
     params.append("color", "335fff");
     params.append("via", "textshotapp");
   
-    const link = "https://textshot.app/capture.html?" + params.toString();
+    const link = "https://textshot.app/preview.html?" + params.toString();
     window.open(link, "Share on Textshot");
   })();
   
