@@ -37,13 +37,6 @@ function getContrastYIQ(hexcolor) {
   
   let credit = document.querySelector(".credit");
   let creditText = "shared via Textshot.app";
-  
-  if (urlParams.has("creator_name") !== "null" || urlParams.has("creator_twitter") !== "null") {
-    console.log(urlParams.get("creator_name"))
-    console.log(urlParams.get("creator_twitter"))
-    creditText = "by " + (urlParams.get("creator_name") || urlParams.get("creator_twitter")) + " " + creditText;
-  }
-  
   credit.appendChild(document.createTextNode(creditText));
   
   
