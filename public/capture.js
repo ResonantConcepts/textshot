@@ -60,56 +60,41 @@ if (urlParams.has("url")) {
 
   /* start buffer button */
   const bufferDiv = document.createElement('div');
-  const bufferLink = 'https://buffer.com/add?text=tweet+text'
+  const bufferLink = 'https://buffer.com/add'
+    + `text=${encodeURI(urlParams.get('url'))}`
     + (urlParams.has('via')
       ? '&url=' + urlParams.get("via")
       : '')
     + '&picture=https://us-central1-textshot-app.cloudfunctions.net/post?target=buffer&url=' + window.location.href;
   const bufferButton = `<a href="${bufferLink}" target="_blank">Buffer</a>`
   bufferDiv.innerHTML = bufferButton;
+  /* end buffer button */
 
+  /* start twitter button */
   const twitterDiv = document.createElement('div');
   twitterDiv.style.cursor = 'pointer';
   twitterDiv.style.color = '-webkit-link';
   twitterDiv.style.textDecoration = 'underline';
   const twitterHandler = (e) => {
+    twitterDiv.innerText = 'loading...'
+    twitterDiv.disabled = true;
+
     fetch('https://us-central1-textshot-app.cloudfunctions.net/post?target=twitter')
       .then((response) => response.text())
       .then((img) => {
-        const anchor = document.createElement('a');
-        anchor.href = `https://twitter.com/intent/tweet?text=Created%20with%20%40carbon_app%20${img}`;
-        document.body.appendChild(anchor);
-        anchor.click()
+        const link = `https://twitter.com/intent/tweet?text=${encodeURI(`${urlParams.get('title')} - ${urlParams.get('url')} via @TextshotApp`)} ${img}`;
+        twitterDiv.innerHTML = `<a href="${link}">tweet</a>`
+        twitterDiv.onclick = null;
+        twitterDiv.disabled = false;
       });
   }
   twitterDiv.onclick = twitterHandler;
 
-  const twitterLink = '' //'https://twitter.com/intent/tweet?text=Created%20with%20%40carbon_app%20pic.twitter.com%2Fc2ncu8t2oG'
   twitterDiv.innerHTML = `Twitter`
-  //const twitterButton = `<a id="twitter-button" href="${twitterLink}"   target="_blank">Twitter</a>`
-  //twitterDiv.innerHTML = twitterButton;
-  /*
-  let button = document.createElement("a");
-    let buttonParams = new URLSearchParams();
-      buttonParams.append("text", "tweet+text");
-      buttonParams.append("url", urlParams.get("url"));
-      if (urlParams.has("via")) {
-        buttonParams.append("via", urlParams.get("via"));
-      }
-      
-  button.href = "https://buffer.com/add?" + buttonParams.toString();
-  button.innerHTML = "Buffer";
-  button.target = "_blank";
-  */
-  /*end buffer button*/
-
-  /*start twitter button*/
-
   /*end twitter button*/
+
   document.body.appendChild(bufferDiv);
   document.body.appendChild(twitterDiv);
-  //twitterDiv.querySelector('a').onclick = twitterHandler;
-  // document.body.appendChild(div);
 }
 
 urlParams.has("site_name")
