@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Highlight Within Textarea</title>
+
+		<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700|Droid+Sans+Mono" rel="stylesheet">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+		<!-- highlight-within-textarea CSS/JS -->
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight-within-textarea@2.0.5/jquery.highlight-within-textarea.css" integrity="sha256-Qzw5B+FvAyok0P9ZDNVcblCwwt7RfpBXpHoUM6bVI1w=" crossorigin="anonymous">
+		<script src="https://cdn.jsdelivr.net/npm/highlight-within-textarea@2.0.5/jquery.highlight-within-textarea.js" integrity="sha256-2CVOLDEHdUC4wk0fqp2B9UHL6Pdyuvl9raexxFkWXB4=" crossorigin="anonymous"></script>
+
+		<!-- custom styles for highlight-within-textarea -->
+		<style>
+			.hwt-container {
+				background-color: #f8f9fa;
+			}
+
+			.hwt-content {
+				width: 760px;
+				height: 100px;
+				padding: 20px;
+				border: 1px solid #adb5bd;
+				color: inherit;
+				font: 18px/25px 'Droid Sans Mono', sans-serif;
+			}
+
+			.hwt-input:focus {
+				outline-color: #495057;
+			}
+
+			.hwt-content mark {
+				border-radius: 3px;
+				background-color: #d0bfff;
+			}
+
+			.hwt-content mark.red {
+				background-color: #ffc9c9;
+			}
+
+			.hwt-content mark.blue {
+				background-color: #a3daff;
+			}
+
+			.hwt-content mark.yellow {
+				background-color: #ffec99;
+			}
+		</style>
+
+		<!-- general styles to make this page look decent -->
+		<style>
+			* {
+				box-sizing: border-box;
+			}
+
+			body {
+				max-width: 800px;
+				margin: 40px auto;
+				padding: 0 20px;
+				font: 18px/1.4 'Open Sans', sans-serif;
+				color: #495057;
+				background-color: #f1f3f5;
+			}
+
+			a {
+				display: inline-block;
+				margin-bottom: 5px;
+				padding: 10px 30px;
+				border-radius: 5px;
+				color: #f8f9fa;
+				background-color: #495057;
+				text-decoration: none;
+			}
+
+			section {
+				margin-top: 60px;
+			}
+
+			code {
+				padding: 0 5px;
+				font-family: 'Droid Sans Mono', sans-serif;
+				font-size: 16px;
+				background-color: #dee2e6;
+			}
+
+			script {
+				display: block;
+				margin-top: 10px;
+				padding-left: 15px;
+				border-left: 5px solid #adb5bd;
+				background-color: #e9ecef;
+				white-space: pre-wrap;
+				font: 14px/1.5 'Droid Sans Mono', sans-serif;
+			}
+		</style>
+	</head>
+	<body>
+		<h1>Highlight Within Textarea</h1>
+		<p>Playground to figure out highlighting</p>
+		<p>
+			<a href="https://github.com/lonekorean/highlight-within-textarea/tree/master">Go to GitHub repo</a>
+			<a href="https://www.npmjs.com/package/highlight-within-textarea">Go to npm package</a>
+		</p>
+
+		<section>
+			<textarea class="string-example">Spotify’s total number of premium subscribers growing by 9 percent to 108 million compared to the last quarter, and monthly active users growing to 232 million, an increase of 7 percent that The Wall Street Journal notes exceeded expectations.</textarea>
+			<script>
+let selection = "";
+document.addEventListener('selectionchange', () => {
+  if (window.getSelection().toString() != "") {
+    selection = window.getSelection().toString();
+  }
+  $('.string-example').highlightWithinTextarea({
+      highlight: selection
+  });
+});
+			</script>
+		</section>
+
+	</body>
+</html>
