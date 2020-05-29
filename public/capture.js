@@ -60,12 +60,11 @@ if (urlParams.has("url")) {
 
   /* start buffer button */
   const bufferDiv = document.createElement('div');
-  const bufferLink = 'https://buffer.com/add'
-    + `text=${encodeURI(urlParams.get('url'))}`
-    + (urlParams.has('via')
-      ? '&url=' + urlParams.get("via")
+  const bufferLink = 'https://buffer.com/add?text=tweet+text'
+    + '&picture=https://us-central1-textshot-app.cloudfunctions.net/post?target=buffer&url=' + encodeURI(window.location.href)
+    + (urlParams.has('url')
+      ? '&url=' + urlParams.get("url")
       : '')
-    + '&picture=https://us-central1-textshot-app.cloudfunctions.net/post?target=buffer&url=' + window.location.href;
   const bufferButton = `<a href="${bufferLink}" target="_blank">Buffer</a>`
   bufferDiv.innerHTML = bufferButton;
   /* end buffer button */
